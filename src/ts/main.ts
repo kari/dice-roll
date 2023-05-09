@@ -1,5 +1,7 @@
 import * as rpgDiceRoller from '@dice-roller/rpg-dice-roller';
 
+const rollWorker = new Worker(new URL("worker.ts", import.meta.url), {type: 'module'}); // new URL for Parcel
+
 function roll(e:Event) {
     e.preventDefault();
 
@@ -7,6 +9,9 @@ function roll(e:Event) {
     try {
         const roll = new rpgDiceRoller.DiceRoll(input);
         console.log(roll.output);
+        console.log(roll.export());
+
+        rollWorker.postMessage(["roll", input]);
         
         var output = document.createElement('div');
         output.setAttribute("class", "alert alert-success");
@@ -21,8 +26,13 @@ function roll(e:Event) {
     }
 }
 
-(function () {
-        document.querySelector("form")!.addEventListener("submit", roll);
-})();
-
-
+document.querySelector("form")!.addEventListener("submit", roll);
+rollWorker.onmessage = (e: MessageEvent) => {
+    console.log("Got message from worker")
+    const [ type, data ] = e.data;
+    switch (type) {
+        case "rollLog":
+            console.log(data);
+            // create/update histogram
+    }
+}
