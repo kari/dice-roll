@@ -1,4 +1,5 @@
 import * as rpgDiceRoller from '@dice-roller/rpg-dice-roller';
+// import * as bootstrap from 'bootstrap'
 
 const rollWorker = new Worker(new URL("worker.ts", import.meta.url), {type: 'module'}); // new URL for Parcel
 

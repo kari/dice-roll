@@ -10,6 +10,12 @@
     "typescript": "^5.0.4"
   },
   "dependencies": {
-    "@dice-roller/rpg-dice-roller": "^5.2.1"
+    "@dice-roller/rpg-dice-roller": "^5.2.1",
+    "@popperjs/core": "^2.11.7",
+    "bootstrap": "^5.3.0-alpha3"
+  },
+  "scripts": {
+    "start": "parcel serve src/index.html --public-url / --dist-dir dist",
+    "test": "echo \"Error: no test specified\" && exit 1"
   }
 }
