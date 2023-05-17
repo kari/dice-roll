@@ -30,7 +30,7 @@ function roll(roller: rpgDiceRoller.DiceRoller, rollStr: string, sampleCount: nu
         if (sampleCount >= MAX_SAMPLES) break;
         if (performance.now() >= endOn) break;
     }
-    self.postMessage(["rollLog", roller.log]); // FIXME: Only really need frequency of totals
+    self.postMessage(["rollLog", roller.log.map(r => r.total)]); // FIXME: Only really need frequency of totals
     roller.clearLog();
     if (sampleCount < MAX_SAMPLES) {
         const timeoutID = setTimeout(roll, 0, roller, rollStr, sampleCount);
