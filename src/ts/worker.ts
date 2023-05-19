@@ -4,7 +4,8 @@ const MAX_SAMPLES = 100000;
 const ITERATION_TIME = 100;
 
 self.onmessage = (e: MessageEvent) => {
-    console.log("Message recieved from main thread");
+    // console.log("Message recieved from main thread");
+    // FIXME: cache results
     const [ type, data ] = e.data;
     switch (type) {
         case "roll": // start simulation and feed back results to histogram
@@ -16,7 +17,7 @@ self.onmessage = (e: MessageEvent) => {
 let cancel = () => {}; 
 
 function simulate(data: string) {
-    console.log(`Starting a simulation for ${data}`);
+    // console.log(`Starting a simulation for ${data}`);
     cancel(); // cancel existing simulation, if it exists
     const roller = new rpgDiceRoller.DiceRoller();
     roll(roller, data, 0);
