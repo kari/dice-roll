@@ -1,4 +1,5 @@
 {
+  "source": "src/index.html",
   "devDependencies": {
     "@parcel/transformer-sass": "^2.8.3",
     "@types/d3": "^7.4.0",
@@ -17,7 +18,8 @@
     "d3": "^7.8.4"
   },
   "scripts": {
-    "start": "parcel serve src/index.html --public-url / --dist-dir dist",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "parcel",
+    "build": "parcel build",
+    "clean": "npx rimraf build dist"
   }
 }
